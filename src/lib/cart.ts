@@ -1,4 +1,3 @@
-import { create } from "zustand";
 import { CartItem, Product } from "./types";
 
 // Simple store without zustand dependency - using React context pattern instead
