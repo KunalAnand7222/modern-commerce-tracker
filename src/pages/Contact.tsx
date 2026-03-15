@@ -28,15 +28,50 @@ export default function Contact() {
           </div>
 
           {/* Form */}
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-            <input placeholder="Your Name" className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
-            <input type="email" placeholder="Your Email" className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
-            <input placeholder="Phone Number" className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50" />
-            <textarea rows={4} placeholder="Your Message" className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none" />
-            <button className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-primary text-primary-foreground font-display font-bold hover:brightness-110 transition-all">
-              <Send className="w-4 h-4" /> Send Message
-            </button>
-          </form>
+          <form
+  name="contact"
+  method="POST"
+  data-netlify="true"
+  className="space-y-4"
+>
+  <input type="hidden" name="form-name" value="contact" />
+
+  <input
+    name="name"
+    placeholder="Your Name"
+    required
+    className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+  />
+
+  <input
+    type="email"
+    name="email"
+    placeholder="Your Email"
+    required
+    className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+  />
+
+  <input
+    name="phone"
+    placeholder="Phone Number"
+    className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+  />
+
+  <textarea
+    rows={4}
+    name="message"
+    placeholder="Your Message"
+    required
+    className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
+  />
+
+  <button
+    type="submit"
+    className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-primary text-primary-foreground font-display font-bold hover:brightness-110 transition-all"
+  >
+    <Send className="w-4 h-4" /> Send Message
+  </button>
+</form>
         </div>
       </div>
       <Footer />
