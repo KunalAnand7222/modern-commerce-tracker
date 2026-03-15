@@ -1,12 +1,13 @@
+import { useState } from "react";
 import { MapPin, Phone, Mail as MailIcon, Send } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useState } from "react";
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = (e:any) => {
+    e.preventDefault();
     setSubmitted(true);
   };
 
@@ -18,22 +19,23 @@ export default function Contact() {
         <h1 className="text-3xl font-display font-bold text-foreground mb-2 text-center">
           Contact Us
         </h1>
+
         <p className="text-muted-foreground text-center mb-12">
           We'd love to hear from you
         </p>
 
         <div className="grid md:grid-cols-2 gap-10 max-w-4xl mx-auto">
-          
+
           {/* Contact Info */}
           <div className="space-y-6">
+
             <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                 <MapPin className="w-5 h-5 text-primary" />
               </div>
+
               <div>
-                <h4 className="font-display font-bold text-foreground text-sm">
-                  Address
-                </h4>
+                <h4 className="font-bold text-sm">Address</h4>
                 <p className="text-sm text-muted-foreground">
                   Lawgate, Phagwara, Punjab, 144411, India
                 </p>
@@ -41,13 +43,12 @@ export default function Contact() {
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                 <MailIcon className="w-5 h-5 text-primary" />
               </div>
+
               <div>
-                <h4 className="font-display font-bold text-foreground text-sm">
-                  Email
-                </h4>
+                <h4 className="font-bold text-sm">Email</h4>
                 <p className="text-sm text-muted-foreground">
                   kunalbhardwaj7222805@gmail.com
                 </p>
@@ -55,72 +56,75 @@ export default function Contact() {
             </div>
 
             <div className="flex items-start gap-4">
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
                 <Phone className="w-5 h-5 text-primary" />
               </div>
+
               <div>
-                <h4 className="font-display font-bold text-foreground text-sm">
-                  Phone
-                </h4>
+                <h4 className="font-bold text-sm">Phone</h4>
                 <p className="text-sm text-muted-foreground">
                   +91-9693604226
                 </p>
               </div>
             </div>
+
           </div>
 
-          {/* Contact Form */}
-          <form
-            name="contact"
-            method="POST"
-            data-netlify="true"
-            onSubmit={handleSubmit}
-            className="space-y-4"
-          >
-            <input type="hidden" name="form-name" value="contact" />
+          {/* Form */}
+          <div>
 
-            <input
-              name="name"
-              required
-              placeholder="Your Name"
-              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
-            />
+            {submitted ? (
 
-            <input
-              type="email"
-              name="email"
-              required
-              placeholder="Your Email"
-              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
-            />
+              <div className="bg-green-500/10 border border-green-500 p-6 rounded-lg text-center">
+                <h3 className="text-xl font-bold text-green-500 mb-2">
+                  Thank You!
+                </h3>
+                <p className="text-muted-foreground">
+                  Thanks for contacting us. We will get back to you soon.
+                </p>
+              </div>
 
-            <input
-              name="phone"
-              placeholder="Phone Number"
-              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
-            />
+            ) : (
 
-            <textarea
-              rows={4}
-              name="message"
-              required
-              placeholder="Your Message"
-              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 resize-none"
-            />
+              <form className="space-y-4" onSubmit={handleSubmit}>
 
-            <button
-              type="submit"
-              className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-primary text-primary-foreground font-display font-bold hover:brightness-110 transition-all"
-            >
-              <Send className="w-4 h-4" /> Send Message
-            </button>
+                <input
+                  required
+                  placeholder="Your Name"
+                  className="w-full px-4 py-3 rounded-lg bg-secondary border border-border"
+                />
 
-            {submitted && (
-              <p className="text-green-500 text-sm text-center mt-2">
-                Message sent successfully!
-              </p>
+                <input
+                  required
+                  type="email"
+                  placeholder="Your Email"
+                  className="w-full px-4 py-3 rounded-lg bg-secondary border border-border"
+                />
+
+                <input
+                  placeholder="Phone Number"
+                  className="w-full px-4 py-3 rounded-lg bg-secondary border border-border"
+                />
+
+                <textarea
+                  rows={4}
+                  placeholder="Your Message"
+                  className="w-full px-4 py-3 rounded-lg bg-secondary border border-border"
+                />
+
+                <button
+                  type="submit"
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-primary text-white font-bold hover:brightness-110"
+                >
+                  <Send className="w-4 h-4" /> Send Message
+                </button>
+
+              </form>
+
             )}
-          </form>
+
+          </div>
+
         </div>
       </div>
 
